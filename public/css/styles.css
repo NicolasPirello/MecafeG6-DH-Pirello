@@ -92,6 +92,17 @@ a:active {
     padding-bottom: 50px;
 }
 
+.home__logoAndTextBanner p{
+    width: 25%;
+    margin: auto;
+    color: white;
+    font-size: 0.5em;
+}
+
+.home__logoAndTextBanner div{
+    margin: auto;
+}
+
 /*! ════════════════════ Modificacion de CART ════════════════════ !*/
 
 .progress__description{
