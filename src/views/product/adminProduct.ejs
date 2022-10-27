@@ -1,0 +1,103 @@
+<!-- Encabezado de la pagina -->
+<%- include("../partials/head") %>
+    <title>Administracion de Productos</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">  
+        <div class="container_users">
+            <%- include("../partials/menuAdmin") %>
+            <div class="container_detail_view_admin"> 
+                <p class="title">Productos</p>               
+            </div>
+            <div class="AdminProducts container_detail_view_admin">             
+                <div class="AdminProducts__containerNewProduct">
+                  <!--
+                    <div class="AdminProducts__create">
+                        <p>Nuevo producto: </p>
+                        <form action="/product/create" method="get"> 
+                            <button type="submit" class="AdminProducts__btnNewProduct">Crear producto</button>
+                        </form>
+                    </div>
+                -->
+                </div>    
+                <div class="AdminProducts__containerTable">
+    
+                    <table class="AdminProducts__table">
+    
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th class="item-display-none">Categoría</th> 
+                                <th class="item-display-none">Gramos</th>                         
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+
+                            <% allProducts.forEach (element => { %>
+        
+                                <tr>
+                                    <td><%= element.id %></td>
+                                    <td><%= element.name %></td>
+                                    <td class="item-display-none">
+                                        <!-- tipos molienda activos -->
+                                        <div>
+                                        <% element.type_grindings.forEach (typeGrinding => { 
+                                            if(typeGrinding.ProductTypeGrinding.active){%>
+                                                    <span class="badge"><%= typeGrinding.name %>,</span>
+                                                    <% }
+                                                }) %>
+                                        </div>
+                                    </td>
+                                    <td class="item-display-none">
+                                        <!-- gramos activos -->
+                                        <div>
+                                            <% element.products_grames.forEach (productGrame => { 
+                                                if(productGrame.price > 0){%>
+                                                    <span class="badge"> <%= productGrame.grames %>,</span>
+                                                <% }
+                                            }) %>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="AdminProducts__btn">
+                                            <form action="/product/edit/<%= element.id %>" method="get"> 
+                                                <button type="submit" class="AdminProducts__btn"><i class="fas fa-edit AdminProducts__btnModify"></i></button>
+                                            </form>
+        
+                                            <form action="/product/delete/<%= element.id %>" method="post"> 
+                                                <button type="submit" class="AdminProducts__btn"><i type="submit" class="fas fa-trash-alt  AdminProducts__btnDelete"></i></button>
+                                            </form>
+                                        </div>
+        
+                                    </th>
+                                </tr>
+    
+                            <% }); %>
+
+                        </tbody>
+
+                    </table>
+    
+                </div>
+
+            </div>
+    
+        </div> 
+       
+    </section>
+    <!-- Pie de Pagina -->
+    <%- include("../partials/footerNico") %>
+</body>
+</html>
+
+<script src="../../../../../../../../js/menuPartial.js"></script>
+
+   

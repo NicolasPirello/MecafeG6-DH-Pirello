@@ -1,0 +1,222 @@
+<!-- Encabezado de la pagina -->
+<%- include("../../partials/head") %>
+    <title>Mis Direcciones</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">  
+        <div class="container_users">
+            <%- include("../../partials/menuUser") %>
+            <div class="container_detail_view_user container_user_directions">
+                <div class="header_direction_detail">
+                    <p class="title">Mis Direcciones</p>
+                    <button class="btnAddDirection" onclick="addDirection()">Añadir Dirección</button>
+                </div>
+
+                <div class="list_directions">
+
+                    <% directions.forEach((direction) => { %>
+                        <article class="direction_detail">
+                            <div class="header_list_direction_detail">
+                                <p class="direction_name"><%= direction.name %></p>
+                                <p class="direction_default_text <%= direction.default ? '' : 'hidden'  %>">Dir. predeterminada</p>
+                            </div>
+                            <div class="body_list_direction_detail">
+                                <p><%= direction.street %></p>
+                                <p><%= direction.city %>, <%= direction.region %>, <%= direction.country %></p>
+                                <p><%= direction.address_code %></p>
+                            </div>
+                            <div class="footer_list_direction_detail">
+                                <button onclick="completeForm(<%= JSON.stringify(direction) %>)" class="button_edit_direction">Editar</button>
+                                <form action="/user/direction/<%= direction.id %>/delete" method="post">
+                                    <button  class="button_delete_direction">Eliminar</button>
+                                </form>
+                                
+                                <!--  <p class="button_name_direction <%= direction.default ? '' : 'hidden'  %>">Dirección predeterminada</p>  -->
+                                
+                            </div>
+                        </article>                
+                    <% }) %>
+                </div>
+
+                <div class="form-direction-create display-none">
+                    <form action="" class="formDirection__form" method="POST">  
+                        <input type="hidden" name="id" class="formDirection__formInput"
+                            value="" id="id" placeholder=" ">                    
+                        <div>
+                            <input type="text" name="name" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.name : null %>" id="name" placeholder=" ">
+                            <label for="name" class="formDirection__formLabel">Nombre Direccion:</label>
+        
+                            <% if(locals.errorMessage && errorMessage.name){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.name.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+        
+                        <div>
+                            <input type="text" name="street" class="formDirection__formInput" 
+                            value="<%= locals.oldData ? oldData.street : null %>" id="street" placeholder=" ">
+                            <label for="street" class="formDirection__formLabel">Calle:</label>
+                            <% if(locals.errorMessage && errorMessage.street){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.street.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+        
+                        <div>
+                            <input type="text" name="city" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.city : null %>" id="city"  placeholder=" ">
+                            <label for="city" class="formDirection__formLabel">Ciudad:</label>
+                            <% if(locals.errorMessage && errorMessage.city){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.city.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+        
+                        <div>
+                            <input type="text" name="region" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.region : null %>" id="region"  placeholder=" ">
+                            <label for="region" class="formDirection__formLabel">Region:</label>
+                            <% if(locals.errorMessage && errorMessage.region){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.region.msg %>
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="text" name="country" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.country : null %>" id="country"  placeholder=" ">
+                            <label for="country" class="formDirection__formLabel">Pais</label>
+                            <% if(locals.errorMessage && errorMessage.country){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.country.msg %>
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="text" name="address_code" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.address_code : null %>" id="address_code"  placeholder=" ">
+                            <label for="address_code" class="formDirection__formLabel">Codigo Postal</label>
+                            <% if(locals.errorMessage && errorMessage.address_code){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.address_code.msg %>
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="defaultValue" name="defaultValue">
+                            <label for="defaultValue" class="formDirection__formLabel">Direccion Predeterminada</label>
+                        </div>                        
+                       
+                        <div class="formDirection__Btns">
+                            <button type="submit" class="formDirection__btn btnsDirection btnSend">Guardar</button>  
+                            <a onclick="cancelFormRegisterDirection()" class="formDirection__btn btnsDirection btnCancel">Cancelar </a>                             
+                        </div>
+
+                    </form>
+                </div>
+                <div class="form-direction-edit display-none">
+                    <form action="direction/update" class="formDirection__form" method="POST">  
+                        <input type="hidden" name="id" id="editId" class="formDirection__formInput"
+                            value="" id="editId" placeholder=" ">                    
+                        <div>
+                            <input type="text" name="name" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.name : null %>" id="editName" placeholder=" ">
+                            <label for="name" class="formDirection__formLabel">Nombre Direccion:</label>
+        
+                            <% if(locals.errorMessage && errorMessage.name){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.name.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+        
+                        <div>
+                            <input type="text" name="street" class="formDirection__formInput" 
+                            value="<%= locals.oldData ? oldData.street : null %>" id="editStreet" placeholder=" ">
+                            <label for="street" class="formDirection__formLabel">Calle:</label>
+                            <% if(locals.errorMessage && errorMessage.street){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.street.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+        
+                        <div>
+                            <input type="text" name="city" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.city : null %>" id="editCity"  placeholder=" ">
+                            <label for="city" class="formDirection__formLabel">Ciudad:</label>
+                            <% if(locals.errorMessage && errorMessage.city){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.city.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+        
+                        <div>
+                            <input type="text" name="region" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.region : null %>" id="editRegion"  placeholder=" ">
+                            <label for="region" class="formDirection__formLabel">Region:</label>
+                            <% if(locals.errorMessage && errorMessage.region){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.region.msg %>
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="text" name="country" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.country : null %>" id="editCountry"  placeholder=" ">
+                            <label for="country" class="formDirection__formLabel">Pais</label>
+                            <% if(locals.errorMessage && errorMessage.country){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.country.msg %>
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="text" name="address_code" class="formDirection__formInput"
+                            value="<%= locals.oldData ? oldData.address_code : null %>" id="editAddress_code"  placeholder=" ">
+                            <label for="address_code" class="formDirection__formLabel">Codigo Postal</label>
+                            <% if(locals.errorMessage && errorMessage.address_code){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.address_code.msg %>
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="editDefaultValue" name="defaultValue">
+                            <label for="defaultValue" class="formDirection__formLabel">Direccion Predeterminada</label>
+                        </div>                        
+                       
+                        <div class="formDirection__Btns">
+                            <button type="submit" class="formDirection__btn btnsDirection btnSend">Guardar</button>  
+                            <a onclick="cancelFormEditDirection()" class="formDirection__btn btnsDirection btnCancel">Cancelar </a>                             
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div> 
+       
+    </section>
+    <!-- Pie de Pagina -->
+    <%- include("../../partials/footerNico") %>
+</body>
+</html>
+
+<script src="../../../../../../../../js/direction.js"></script>
+<script src="../../../../../../../../js/menuPartial.js"></script>

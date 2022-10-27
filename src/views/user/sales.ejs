@@ -1,0 +1,50 @@
+<!-- Encabezado de la pagina -->
+<%- include("../partials/head") %>
+    <title>Mis Pedidos</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">  
+        
+        <div class="container_users">
+
+            <!-- Menu superior -->
+            <%- include("../partials/menuUser") %>
+
+            <div class="container_detail_view_user_sales container__table_sales_user"> 
+                <div class="header_direction_detail_sales">
+                    <p class="title">Mis Pedidos</p>
+                </div>
+            </div>
+
+                <table id="table__sales_user">          
+                    <thead>
+                      <tr>
+                        <th>PEDIDO</th>
+                        <th>FECHA</th>
+                        <th>TOTAL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% sales.forEach(item => { %>
+                            <tr>
+                                <td class="id_sale"><%= item.id %></td>                
+                                <td><%= new Date(item.date).toISOString().slice(0, 10) %></td>
+                                <td><span class="total_sale">$<%= parseFloat(item.total).toFixed(2) %></span> <span class="description_total_sale">para <%= item.totalItems %> elementos</span></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>             
+                </table>
+           
+        </div> 
+       
+    </section>
+    <!-- Pie de Pagina -->
+    <%- include("../partials/footerNico") %>
+</body>
+</html>
+<script src="../../../../../../../../js/menuPartial.js"></script>

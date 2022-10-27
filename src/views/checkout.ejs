@@ -1,0 +1,214 @@
+<!-- Encabezado de la pagina -->
+<%- include("./partials/head") %>
+    <title>Checkout</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("./partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">   
+        
+        <div class="checkout">
+
+            <div class="checkout__container">
+            
+            <%- include("./partials/progresBarCart") %>
+
+            <form action="/sale" method="post">
+
+                <div class="checkout__formContainer">
+
+                    <%  if(detailCart.length == 0){ %>
+                        <div class="checkout__alertDirection alertDirectionRed checkout__clusterZero">
+                            <p class="">Tienes tu Carrito vacío 😥, agrega cosas al carrito para comprar 🥰</p>
+                        </div>
+                    <% } else { %>
+                        <div class="checkout__alertDirection <%= directions.length > 0 ? 'alertDirectionGreen': 'alertDirectionRed' %> checkout__clusterZero">
+                       
+                            <%  if(directions.length > 0){ %>
+                                <p class="">Veo que cargaste una o mas direcciones, abajo tenes la libertad de elegir la que mas comoda te queda 😄. Espero disfrutes mucho tu pedido, Gracias!! 🥰</p>
+                            <% } else { %>
+                                <p class="">Veo que no tenes ninguna direccion cargada 😥 ¿No pensas que cargar una seria una buena idea? Excepto que quieras que tu pedido lo entreguemos en la luna 😒</p>
+                            <% } %>
+                        </div>
+                    <% } %>
+                    
+                  
+
+                    <div class="checkout__directions checkout__clusterOne">
+                        <select name="idDirection" id="checkout__selectDirection" required>
+                            <% directions.forEach(item => { %>
+                                <option dataValue="<%= JSON.stringify(item) %>" value="<%= item.id%> " <%= item.default ? 'selected' : ''%> ><%= item.name %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    
+                    <div class="checkout__dataDirectionSelected checkout__clusterTwo">
+
+                        <div class="dataDirectionSelectedHidden">
+                            <h5>Desplegar Direccion</h5>
+                            <i id="dataDirection-btn" class="fa-solid fa-caret-down"></i>
+                        </div>
+
+                        <div id="dataDirectionContainer" class="dataDirectionHidden">
+                            <div>
+                                <label for="checkout__direction">Nombre de Direccion:</label>
+                                <input id="checkout__direction" type="text" value="<%= direction.name %>" readonly>
+                            </div>
+
+                            <div>
+                                <label for="checkout__street">Calle:</label>
+                                <input id="checkout__street" type="text" value="<%= direction.street %>" readonly>
+                            </div>
+
+                            <div>
+                                <label for="checkout__city">Ciudad:</label>
+                                <input id="checkout__city" type="text" value="<%= direction.city %>" readonly>
+                            </div>
+
+                            <div>
+                                <label for="checkout__region">Region:</label>
+                                <input id="checkout__region" type="text" value="<%= direction.region %>" readonly>
+                            </div>
+
+                            <div>
+                                <label for="checkout__country">Pais:</label>
+                                <input id="checkout__country" type="text" value="<%= direction.country %>" readonly>
+                            </div>
+
+                            <div>
+                                <label for="checkout__postalCode">Codigo Postal:</label>
+                                <input id="checkout__postalCode" type="text" value="<%= direction.address_code %>" readonly>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="checkout__detailOrder checkout__clusterThree">
+
+                        <div>
+                            <h3>Detalle del Pedido:</h3>
+                            <i id="checkout__tableHidden" class="fa-solid fa-caret-down"></i>
+                        </div>
+
+                        <table class="checkout__table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Tipo de Molienda</th>
+                                    <th>Gramos</th>
+                                    <th>Precio</th>
+                                    <th>Total</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <% 
+                                detailCart.forEach(item => { 
+                                    let product = item.products_grames.products;
+                                    let totalProduct = item.quantity * item.products_grames.price;                                                
+                                %>
+
+                                <tr>
+                                    <td><%= product.name %></td>
+                                    <td><%= item.quantity %></td>
+                                    <td><%= item.products_type_grindings.type_grindings.name %></td>
+                                    <td><%= item.products_grames.grames %>G</td>
+                                    <td><%= item.products_grames.price %> USD</td>
+                                    <td><%= parseFloat(item.quantity * item.products_grames.price).toFixed(2) %> USD</td>
+                                </tr>
+                            <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <div class="checkout__orderPayment checkout__clusterFor">
+                        
+                        <div class="checkout__cardContainer">
+
+                            <div class="checkout__CardLeft">
+
+                                <div>
+                                    <p>Order Number</p>
+                                    <p>#12654</p>
+                                </div>
+
+                                <div>
+                                    <p>Precio</p>
+                                    <p>150 USD</p>
+                                </div>
+                                    
+                            </div>
+
+                            <div class="checkout__CardRight">
+
+                                <h4>Pago con Tarjeta de Credito</h4>
+
+                                <div>
+                                    <label for="">Nombre Completo:</label>
+                                    <input type="text" required >
+                                </div>
+
+                                <div>
+                                    <label for="">Numero de la Tarjeta</label>
+                                    <input type="number" required >
+                                </div>
+
+                                <div class="checkout__expirationAndCode">
+
+                                    <span>
+                                        <label for="">Expiracion</label>
+                                        <input type="text" required>
+                                    </span>
+
+                                    <span>
+                                        <label for="">CVV</label>
+                                        <input type="password" required>
+                                    </span>
+
+                                    <span>
+                                        <button type="submit"  <%= detailCart.length == 0 || directions.length == 0? 'disabled' : '' %>>pagar</button>
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+            </div>
+
+
+        </div>
+        
+
+
+
+
+
+    </section>
+
+    <!-- Pie de Pagina -->
+    <%- include("./partials/footerNico") %>
+    <script src="../../../../../../../../js/cart.js"></script>
+
+
+</body>
+</html>

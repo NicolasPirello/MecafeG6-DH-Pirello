@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Café 1",
+        "price": "200",
+        "grams": "100",
+        "category": "En grano",
+        "description": "Descripcion del cafe 1",
+        "image": "cafe-molido-la-morenita.png",
+        "rating": 4
+    },
+    {
+        "id": 2,
+        "name": "Café 2",
+        "price": "200",
+        "grams": "100",
+        "category": "En grano",
+        "description": "Descripcion del cafe 2",
+        "image": "cafe-molido-la-morenita.png",
+        "rating": 5
+    },
+    {
+        "id": 3,
+        "name": "Maximo 30 caracteres",
+        "price": 300,
+        "grams": 100,
+        "category": "Molido Medio",
+        "description": "Descripcion del cafe 3",
+        "image": "cafe-molido-la-morenita.png",
+        "rating": 3
+    },
+    {
+        "id": 4,
+        "name": "Café 4",
+        "price": 400,
+        "grams": 100,
+        "category": "Molido Medio",
+        "description": "Descripcion del cafe 4",
+        "image": "cafe-molido-la-morenita.png",
+        "rating": 4
+    },
+    {
+        "id": 5,
+        "name": "Café 5",
+        "price": 600,
+        "grams": 100,
+        "category": "Molido Medio",
+        "description": "Descripcion del cafe 5",
+        "image": "cafe-molido-la-morenita.png",
+        "rating": 5
+    },
+    {
+        "id": 6,
+        "name": "Café 7",
+        "price": "600",
+        "grams": "100",
+        "category": "En grano",
+        "description": "Descripcion del cafe 6",
+        "image": "cafe-molido-la-morenita.png",
+        "rating": 4
+    },
+    {
+        "id": 7,
+        "name": "Café 7",
+        "price": "50",
+        "grams": "300",
+        "category": "En grano",
+        "description": "Descripción del cafe 7",
+        "image": "cafe-molido-la-morenita.png",
+        "rating": 2
+    },
+    {
+        "id": 9,
+        "name": "Nicolas",
+        "price": "20",
+        "grams": "Alejandro",
+        "category": "Molido Medio",
+        "description": "Holis",
+        "image": "productImage - 1658870834333.png",
+        "rating": 4
+    }
+]

@@ -1,0 +1,100 @@
+<div class="navbar">
+    <div class="navbar__container flex-nav">
+        <div class="nav-header">
+            <a href="/">
+            <h2>Me<span>Cafe</span></h2>
+            </a>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="nav-links" id="nav-links">
+            <ul>
+                <li class="nav-link link-hover"><a class="link-hover-link" href="/">Inicio</a></li>
+                <li class="nav-link link-hover"><a class="link-hover-link" href="/product">Productos</a></li>
+
+                <li class="nav-link selector-Nav link-hover" id="quienesSomos" ><a class="link-hover-link" href="#">Informacion <i class="fa-solid fa-caret-down"></i></a>
+
+                    <div class="nav-link-desplagable nav-link-aparecer">
+                        <a href="">Historia</a>
+                        <a href="">Contacto</a>
+                    </div>
+
+                </li>
+        
+                <% if(locals.user && locals.user.role == 1) { %>
+
+                    <li class="nav-link selector-Nav link-hover" id="navbarAdmin"><a class="link-hover-link" href="#">Admin <i class="fa-solid fa-caret-down"></i> </a>
+                    
+                        <div class="nav-link-desplagable nav-link-aparecer">
+                            <a href="/user/list">Usuarios</a>
+                            <a href="/product/list">Productos</a>
+                            <a href="/product/create">Crear Producto</a>
+                            <a href="/type-grinding/list">Tipos de Molienda</a>
+                            <a href="/type-grinding/create">Crear Tipo de Molienda</a>
+                        </div>
+
+                    </li> 
+
+                <% } %>
+
+                <% if(locals.user) { %> 
+
+                <li class="nav-link selector-Nav link-hover" id="navbarPerfil"><a class="link-hover-link" href="#">Perfil <i class="fa-solid fa-caret-down"></i></a>
+
+                    <div class="nav-link-desplagable nav-link-aparecer">
+                        <a href="/user/profile">Mis Datos</a>
+                        <a href="/user/sale">Mis Pedidos</a>
+                        <a href="/user/direction">Mis Direcciones</a>
+                        <form action="/user/logout" method="post"><a id="logoutStyle" class="link-hover-link" href='#' onclick='this.parentNode.submit(); return false;'>
+                            Logout
+                        </a></form>
+                    </div>
+
+                </li>
+
+                <% } %>
+
+                <% if(!locals.user) { %> 
+                    <li class="nav-link link-hover"><a class="link-hover-link" href="#" onclick="openModal('modalLogin')">Inicio Sesion</a></li>
+                    <li class="nav-link link-hover"><a class="link-hover-link" href="/user/register" >Registrarme</a></li>
+                <% } %>
+
+
+                
+                <% if(locals.user) { %> 
+
+                    <!-- Cart con Number-->
+                    <li class="nav-link">
+                        <div id="cartLogo__container">
+
+                            <a class="link-hover-link" href="/cart" >
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+
+                            <p id="cartLogo__number">
+                                <span id="totalCart"></span>
+                            </p>
+
+                        </div>
+                    </li>
+
+                    <!-- Logout-->
+                    <li class="nav-link link-hover"><form action="/user/logout" method="post"><a class="link-hover-link" href='#' onclick='this.parentNode.submit(); return false;'>
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a></form></li> 
+
+
+                <% } %> 
+
+
+
+            </ul>
+        </nav>
+    </div>
+</div>
+<div id="openCloseSide" class="open-close-side"></div>
+
+<%- include("./login") %>
+

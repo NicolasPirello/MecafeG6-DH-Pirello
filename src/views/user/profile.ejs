@@ -1,0 +1,189 @@
+<!-- Encabezado de la pagina -->
+<%- include("../partials/head") %>
+    <title>Mis Datos</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">  
+        <div class="container_users">
+            <%- include("../partials/menuUser") %>
+
+            <div class="container_detail_view_user_sales container__table_sales_user"> 
+                <div class="header_direction_detail_sales">
+                    <p class="title">Datos de Usuarios</p>
+                </div>
+            </div>
+
+            <div class="container_detail_view_user">
+
+
+                <!-- contenido user Profile -->
+                <section class="profile_container_infoGeneral">
+
+
+                    <div class="profile_container_imageProfile">
+                        <h2 class="profile_title_welcome">Hola <%= userProfile.firstName%>, Bienvenid@!!! </h2>
+                        <img src="/img/profiles/<%= userProfile.image%>" class="profile_img_profile" />
+                    
+                        <div class="profile_contactUs_up">
+                            <img src="/img/contactUs/grano_de_cafe.png" class="profile_img_contactUs_up" />
+                            <h2 class="profile_contactUs_title_up">¿Necesitas ayuda?</h2>
+                            <p class="profile_contactUs_parraf_up">¡Hablemos por WhatsApp!</p>
+                            <a class="profile_contactUs_button_up" href="#">¡Hablemos!</a>
+                        </div>
+                    
+                    </div>
+            
+                    <div class="profile_container_personalInformation">
+
+                        <form action="/user/profile" id ="profile_form" class="profileForm_form" method="POST">
+
+                            <div class ="profile_personalInformation">
+
+                                <div class="profile_personalInformation_label">
+                                    
+
+                                    <input type="text" name="name" 
+                                    class="profile_Input_form" 
+                                    value="<%= userProfile.firstName %>" id="name" placeholder=" ">
+                                    <label for="name" 
+                                    class="profile_Label_form">Nombre:</label>
+
+                                     <!-- validaciones Back -->
+                                    <% if(locals.errorMessage && errorMessage.name){ %>
+                                        <p class="register__formError">
+                                            <%= errorMessage.name.msg %> 
+                                        </p>
+                                    <% } %> 
+                                </div>
+                                
+                                <div class="profile_personalInformation_label">
+                                    <input type="text" name="lastName" 
+                                    class="profile_Input_form"
+                                    value="<%= userProfile.lastName%>" id="lastName" placeholder=" " >
+                                    <label for="lastName"
+                                    class="profile_Label_form">Apellido:</label>
+
+                                     <!-- validaciones Back -->
+                                     <% if(locals.errorMessage && errorMessage.lastName){ %>
+                                        <p class="register__formError">
+                                            <%= errorMessage.lastName.msg %> 
+                                        </p>
+                                    <% } %> 
+                                </div>
+                                
+                                <div class="profile_personalInformation_label">
+                                    <input type="email" name="email" 
+                                    class="profile_Input_form" 
+                                    value="<%= userProfile.email%>" id="email" placeholder=" " >
+                                    <label for="email" 
+                                    class="profile_Label_form">Correo Electrónico:</label>
+                                    
+                                     <!-- validaciones Back -->
+                                     <% if(locals.errorMessage && errorMessage.email){ %>
+                                        <p class="register__formError">
+                                            <%= errorMessage.email.msg %> 
+                                        </p>
+                                    <% } %> 
+                                        
+                                </div>
+                                
+                                <div class="profile_personalInformation_label">
+                                    <input type="text" name="phone" 
+                                    class="profile_Input_form" 
+                                    value="<%= userProfile.phone%>" id="phone" placeholder=" " >
+                                    <label for="text" 
+                                    class="profile_Label_form">Número de Telefono:</label>
+                                </div>
+
+                                <div class="profile_Btns">
+                                    <button type="submit" class="profile_sendBtn" >Guardar los cambios</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+
+                        <form action="/user/changePassword" id ="profile_form_password" class="profileForm_form" method="POST">
+                            <div class ="profile_password_modification">
+
+                                <h3>¿Deseas cambiar tu contraseña?</h3>
+                                <h4>Adelante! 😀</h4>
+
+                                <input type="hidden" name="id"  
+                                value="<%= userProfile.id%>" id="id" placeholder=" ">
+
+                                <div class="profile_personalInformation_label">
+                                    <input type="password" name="password" 
+                                    class="profile_Input_form" id="password" placeholder=" " >
+                                    <label for="text" 
+                                    class="profile_Label_form">Contraseña actual:</label>  
+
+                                    <!-- validaciones Back -->
+                                    <% if(locals.errorMessage && errorMessage.password){ %>
+                                        <p class="register__formError">
+                                            <%= errorMessage.password.msg %> 
+                                        </p>
+                                    <% } %> 
+                                    
+                                </div>
+
+                                <div class="profile_personalInformation_label">
+                                    <input type="password" name="newPassword" class="profile_Input_form" id="newPassword" placeholder=" " >
+                                    <label for="text" 
+                                    class="profile_Label_form">Nueva contraseña:</label> 
+
+                                    <!-- validaciones Back -->
+                                    <% if(locals.errorMessage && errorMessage.newPassword){ %>
+                                        <p class="register__formError">
+                                            <%= errorMessage.newPassword.msg %> 
+                                        </p>
+                                    <% } %> 
+                                </div> 
+                                
+                                <div class="profile_personalInformation_label">
+                                    <input type="password" name="confirmPassword" class="profile_Input_form" id="confirmPassword" placeholder=" " > 
+                                    <label for="text" 
+                                    class="profile_Label_form">confirma la nueva contraseña:</label>
+
+                                    <!-- validaciones Back -->
+                                    <% if(locals.errorMessage && errorMessage.confirmPassword){ %>
+                                        <p class="register__formError">
+                                            <%= errorMessage.confirmPassword.msg %> 
+                                        </p>
+                                    <% } %> 
+                                </div>
+                            </div>
+                                
+                            <div class="profile_Btns">
+                                <button type="submit" class="profile_sendBtn" >Cambia tu contraseña</button>
+                            </div>
+
+                        </form>
+
+                            <div class="profile_contactUs_down">
+                                <img src="/img/contactUs/grano_de_cafe.png" class="profile_img_contactUs_down" />
+                                <h2 class="profile_contactUs_title_down">¿Necesitas ayuda?</h2>
+                                <p class="profile_contactUs_parraf_down">¡Hablemos por WhatsApp!</p>
+                                <a class="profile_contactUs_button_down" href="#">¡Hablemos!</a>
+                            </div>
+
+                        
+                    </div>
+                                
+            
+                </section>
+
+            </div>
+        </div> 
+       
+    </section>
+    <!-- Pie de Pagina -->
+    <%- include("../partials/footerNico") %>
+</body>
+</html>
+<script src="../../../../../../../../js/menuPartial.js"></script>

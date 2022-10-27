@@ -1,0 +1,64 @@
+<!-- Encabezado de la pagina -->
+
+<%- include("../partials/head") %>
+
+<title>Home</title>
+</head>
+
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">
+    
+       <div class="error404">
+
+        <div class="error404__container">
+
+            <div class="error404__boxTextContainer"> 
+                
+                <div class="error404__title">
+                    <h3>Error 404 🥺 <br> Pagina no encontrada.</h3>
+                </div>
+
+                <div class="error404__onefrase">
+                    <p>Esta pagina esta perdida en el limbo.</p>
+                </div>
+
+                <div class="error404__twofrase">
+                    <p>Lo sentimos, no hemos podido encontrar la pagina que buscas, prueba con estos links:</p>
+                </div>
+
+                <div class="error404__links">
+                    <ul>
+                        <li><a href="/">> Home</a></li>
+                        <li><a href="#" onclick="openModal('modalLogin')">> Iniciar Sesion</a></li>
+                        <li><a href="/user/register">> Registrarme</a></li>
+                        <li><a href="">> Contacto</a></li>
+                        <li><a href="">> Quienes Somos</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="error404__boxAnimationContainer">
+
+                <div class="error404__animationImage">
+                    <img src="/img/404Error/Grano con CARTEL combinado.png" alt="">
+                </div>
+
+            </div>
+
+         </div>
+
+       </div>
+
+    </section>
+
+    <!-- Pie de Pagina -->
+    <%- include("../partials/footerNico") %>
+
+</body>
+</html>

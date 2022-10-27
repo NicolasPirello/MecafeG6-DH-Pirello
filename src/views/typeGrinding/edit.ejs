@@ -1,0 +1,60 @@
+<!-- Encabezado de la pagina -->
+<%- include("../partials/head") %>
+    <title>Editar Tipo Molienda</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">  
+        <div class="container_users">
+            <%- include("../partials/menuAdmin") %>
+            <div class="container_detail_view_admin"> 
+                <p class="title">Editar Tipo Molienda</p>               
+            </div>
+            <div class="container_detail_view_admin">
+
+                <div class="containerUpdateTypeGrinding__containerForm">
+            
+                    <form action="/type-grinding/edit/<%= typeGrinding.id %>" method="POST" class="updateTypeGrinding__containerForm">
+
+                        <div class="typeGrindingForm_typeGrinding_titleForm">
+                            <h2>¿Necesitas editar un tipo de molienda?</h2>
+                            <h3>Adelante! 😀</h3>
+                        </div>
+
+                        <div>
+                            <label for="nameTypeGrinding" class="updateTypeGrinding_labelBox">Nombre del tipo de molienda:</label>
+                            <input 
+                            type="text" 
+                            name="nameTypeGrinding" 
+                            class="updateTypeGrinding_inputBox" 
+                            value="<%= typeGrinding.name %>" 
+                            id="nameTypeGrinding">
+
+                            <!-- validaciones Back -->
+                            <% if(locals.errorMessage && errorMessage.nameTypeGrinding){ %>
+                                <p class="register__formError_grinding">
+                                    <%= errorMessage.nameTypeGrinding.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <section class="btn_updateTypeGrinding">
+                            <button type="submit" class="submit">Enviar</button>
+                            <button type="reset" class="reset">Restablecer</button>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </div> 
+       
+    </section>
+    <!-- Pie de Pagina -->
+    <%- include("../partials/footerNico") %>
+</body>
+</html>
+
+<script src="../../../../../../../../js/menuPartial.js"></script>

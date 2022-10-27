@@ -1,0 +1,154 @@
+<!-- Encabezado de la pagina -->
+<%- include("../partials/head") %>
+    <title>Editar Producto</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">  
+        <div class="container_users">
+            <%- include("../partials/menuAdmin") %>
+            <div class="container_detail_view_admin"> 
+                <p class="title">Editar Producto</p>               
+            </div>
+            <div class="container_detail_view_admin">
+            <div class="updateProduct">
+
+                <form class="updateProduct__containerForm" enctype="multipart/form-data" action="/product/edit/<%=product.id%>" method="POST">
+
+                    <div class="registerForm__titleForm">
+                        <h2>¿Necesitas editar un producto?</h2>
+                        <h3>Adelante! 😀</h3>
+                    </div>
+
+                    <div>
+                        <label for="nameProduct" class="updateProduct__labelBox">Nombre del Producto:</label>
+                        <input class="updateProduct__inputBox" type="text" name="nameProduct" id="nameProduct" value="<%=product.name%>" required>
+                    </div>
+
+                    <div>
+                        
+                        <%let numero = 0%>
+
+                        <%allProductGrame.forEach ( element => {%>
+
+                            <% if (product.id == element.product_id) { %>
+                                
+                                <%numero = numero + 1%>
+
+                                <div>
+                                    <label 
+                                    for="weightProduct[<%=numero%>]" class="updateProduct__labelBox">Peso (Gramos) <%=numero%> :</label>
+                                    <input class="updateProduct__inputBox" type="text" name="weightProduct[<%=numero%>]" id="weightProduct<%=numero%>" value="<%=element.grames%>" readonly>
+                                </div>
+
+                                <div>
+                                    <label for="priceProduct[<%=numero%>]" class="updateProduct__labelBox">Precio (USD) <%=numero%> : </label>
+                                    <input class="updateProduct__inputBox" type="text" name="priceProduct[<%=numero%>]" id="priceProduct<%=numero%>" value="<%=element.price%>">
+                                </div>
+
+                                
+                                <% } %>
+                                
+                        <% }) %>
+
+                    </div>
+
+                    
+                    <div>
+                        <label for="descriptionProduct" class="updateProduct__labelBox">Descripcion del producto:</label>
+                        <textarea class="updateProduct__inputBox updateProduct__textArea" name="descriptionProduct" id="descriptionProduct"><%=product.description%></textarea>
+                    </div>
+
+                    <div>
+                        
+                        <label for="idBrand" class="updateProduct__labelBox">Marca del Producto:</label>
+                        <select class="updateProduct__inputBox" name="idBrand" id="idBrand">
+                                
+                            <option value="<%= product.brands.id%>" selected hidden><%=product.brands.name%></option>
+
+                            <% allBrands.forEach( element => { %>
+                                <option value="<%=element.id%>"><%=element.name%></option>
+                            <% }); %>
+
+                        </select> 
+
+                    </div>
+
+                    <div>                  
+
+                        <p> Categorias: </p><br>
+
+                            <!-- Recorremos type_grindings porque este contiene un array -->
+                                
+                            <% allTypeGrindings.forEach(element => { %>
+
+                                <label class="createProduct__labelCategory"><input type="checkbox" id="<%=element.id%>" name="idCategories" value="<%=element.id%>" 
+
+                                    <% product.type_grindings.forEach(type_grindings => { %> 
+
+                                        <% if( element.id == type_grindings.id && type_grindings.ProductTypeGrinding.active === true) { %> 
+
+                                            checked 
+
+                                        <% } %>
+
+                                    <% }) %>
+                                    
+                                    ><%=element.name%></label>
+
+                            <% }); %>
+
+                    </div>
+
+                    <div>
+
+                        <label for="ratingProduct" class="updateProduct__labelBox">Rating:</label>
+                        <select class="updateProduct__inputBox" name="ratingProduct" id="ratingProduct"> 
+
+                
+                            <option label= "<%=product.rating%>" selected="selected" hidden><%=product.rating%></option>
+
+                            <% for (let i = 1 ; i <= 5; i++) { %>
+
+                                <option label= "<%=i%> ⭐" ><%=i%></option>
+
+                            <% }; %>
+
+                        </select> 
+
+                    </div>
+
+
+                    <div>
+                        <label for="imageProduct" class="updateProduct__labelBox">Imagen (JPG, PNG):</label>
+                        <input class="updateProduct__inputBox" type="file" name="imageProduct" id="imageProduct" accept=".JPG,.PNG">
+                    </div>
+
+                    <section class="btn updateProduct-btn">
+                        <button type="submit" class="submit">Enviar</button>
+                        <button type="reset" class="reset">Restablecer</button>
+                    </section>
+
+
+
+                </form>
+
+            </div>
+        </div>
+    
+    </div> 
+   
+</section>
+<!-- Pie de Pagina -->
+<%- include("../partials/footerNico") %>
+</body>
+</html>
+
+<script src="../../../../../../../../js/direction.js"></script>
+<script src="../../../../../../../../js/menuPartial.js"></script>
+
+

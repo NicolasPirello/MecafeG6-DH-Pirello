@@ -1,0 +1,92 @@
+<!-- Encabezado de la pagina -->
+
+<%- include("./partials/head") %>
+
+<title>Home</title>
+</head>
+
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("./partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">
+
+        <div class="home__containerBanner">
+
+            <video src="/video/cafe1080.mp4" autoplay loop muted></video>
+
+            <div class="videotwo-container">
+                <video class="videotwo" src="/video/granosCafe1080.mp4" autoplay loop muted></video>
+            </div>
+
+            <div class="home__logoAndTextBanner">
+                <img src="/img/Home/logoMecafe4.png" alt="">
+            </div>
+
+            <div class="opacity"></div>
+
+        </div>
+
+        <div class="home__body">
+
+
+            <!-- Div Clusters -->
+            
+                <div class="home__containerColumns">
+
+                    <div class="home__containerColumns-container">
+
+                        <div class="home__clusterOne">
+                            <div class="home__clusterCenter">
+                                <a href="/product"><img src="/img/Home/Productos.png" alt=""></a>
+                                <div class="home__line"></div>
+                                <h5 class="home__cluster-text">Productos</h5>
+                            </div>
+                        </div>
+
+                        <div class="home__clusterTwo">
+                            <div class="home__clusterCenter">
+                                <img src="/img/Home/Historia.png" alt="">
+                                <h5 class="home__cluster-text">Historia</h5>
+                            </div>
+                        </div>
+
+                        <div class="home__clusterThree">
+                            <div class="home__clusterCenter">
+                                <img src="/img/Home/Blog.png" alt="">
+                                <h5 class="home__cluster-text">Blog</h5>
+                            </div>
+                        </div>
+
+                        <div class="home__clusterFor">
+                            <div class="home__clusterCenter">
+                                <img src="/img/Home/Recetas.png" alt="">
+                                <h5 class="home__cluster-text">Recetas</h5>
+                            </div>
+                        </div>
+
+                        <div class="home__clusterFive">
+                            <div class="home__clusterCenter">
+                                <img src="/img/Home/Quienes Somos.png" alt="">
+                                <h5 class="home__cluster-text">Contacto</h5>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <!-- Pie de Pagina -->
+    <%- include("./partials/footerNico") %>
+
+</body>
+</html>

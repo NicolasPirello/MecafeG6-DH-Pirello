@@ -1,0 +1,86 @@
+<!-- Encabezado de la pagina -->
+<%- include("./partials/head") %>
+    <title>Carrito</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("./partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">   
+
+       
+       <div class="checkout" >
+
+            <div class="checkout__container">
+
+                <%- include("./partials/progresBarCart") %>
+
+                <main id="cart-products">
+                    
+                    <form action="" method="post">
+                        <table id="table__cart">          
+                            <thead>
+                              <tr>
+                                <th>IMAGEN</th>
+                                <th class="product_name_table_cart">PRODUCTO</th>
+                                <th>PRECIO</th>
+                                <th>CANTIDAD</th>
+                                <th>SUBTOTAL</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <% 
+                                    let total = 0;
+                                    detailsCart.forEach(item => { 
+                                        let product = item.products_grames.products;
+                                        total += item.quantity * item.products_grames.price;                                                
+                                %>
+                                    <tr>
+                                        <td><img class="img__table_cart" src="/img/productos/<%= product.images_products[0].path %>"  alt=""></td>
+                                        <td class="product_name_table_cart"><%= product.name %> - <%= item.products_grames.grames + " grs" %> - <%= item.products_type_grindings.type_grindings.name %> </td>                     
+                                        <td>$<%= parseFloat(item.products_grames.price).toFixed(2) %></td>
+                                        <td>
+                                            <div class="quantity__table_cart" id="item_<%= item.id %>">
+                                                <input type="button" value="-" class="minus" onclick="minusValue(<%= item.id %>)">                                   
+                                                <input type="number" class="input-text qty text" step="1" min="0" name="detailCart_<%= item.id %>" value="<%= item.quantity %>" title="Cantidad" placeholder="" >
+                                                <input type="button" value="+" class="plus" onclick="moreValue(<%= item.id %>)">
+                                            </div>
+                                        </td>
+                                        <td class="product_subtotal__table_cart">$<%= parseFloat(item.quantity * item.products_grames.price).toFixed(2) %></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody> 
+                            <tfoot>
+                                <tr>
+                                  <td colspan="3"></td>
+                                  <td colspan="2">
+                                    <button class="button" type="submit">Actualizar carrito</button>          
+                                  </td>
+                                </tr>
+                              </tfoot>        
+                        </table>
+                    </form>            
+                    <div class="total-cart">
+                        <p class="title">Total del Carrito</p>
+                        <p class="price">$ <%= parseFloat(total).toFixed(2) %></p>
+                        <a class="button" href="/cart/checkout">Finalizar Compra</a>                
+                    </div>
+                </main>
+
+            </div>
+
+       </div>
+        
+
+
+    </section>
+
+    <!-- Pie de Pagina -->
+    <%- include("./partials/footerNico") %>
+    <script src="../../../../../../../../js/cart.js"></script>
+
+
+</body>
+</html>

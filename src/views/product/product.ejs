@@ -1,0 +1,272 @@
+<!-- Encabezado de la pagina -->
+<%- include("../partials/head") %>
+
+  <title>product</title>
+  </head>
+
+  <body class="productBody bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">
+
+      <div class="product-detail-general">
+          
+        <div class="product-img">
+          <img src="/img/productos/" class="img-product" />
+
+          <div class="product-detail-specs">
+            <div class="product-name-product">
+              <p><%=productdetail.name%></p>
+            </div>
+            <div class="product-detail-weight">
+              <i class="fas fa-balance-scale-left"></i>
+              <p class="product-detail-text-weight"><%=productdetail.grams%>grams</p>
+            </div>
+
+            <div class="product-detail-texture">
+              <i class="fas fa-mug-hot"></i>
+              <p class="product-detail-text-textura"><%=productdetail.category%></p>
+            </div>
+
+            <div class="product-detail-recommended">
+              <div class="product-detail-calification">
+                <p class="product-detail-text-calification">Calificacion</p>
+              </div>
+              <div class="poduct-detail-starts">
+                <%if (productdetail.rating==1){%>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <%}else if (productdetail.rating==2){%>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <%}else if (productdetail.rating==3){%>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <%}else if (productdetail.rating==4){%>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <%}else if (productdetail.rating==5){%>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <%}%>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="product-price-truck">
+
+          <div class="product-price-us">
+            <p>Precio US$ <%=productdetail.price%></p>
+          </div>
+
+          <div class="product-cant">
+            <i class="fas fa-minus-circle"></i>
+            <div class="product-cant-valor">
+              <p>6</p>
+            </div>
+            <i class="fas fa-plus-circle"></i>
+          </div>
+
+          <div class="product-option-shipping">
+            <div class="product-truck">
+              <i class="fas fa-truck"></i>
+            </div>
+            <div class="product-shipping">
+              <a href="#">plazos de envío</a></p>
+            </div>
+          </div>
+
+          <!--Boton flotante de carrito compras -->
+          <div class="product-buttons">
+            <a href="#" class="product-btn-shopp">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="product-product">
+          <div class="product-description2">
+            <h4>Descripción</h4>
+            <p>
+              <%=productdetail.description%>
+            </p>
+          </div>
+
+          <div class="product-description-product">
+            
+
+            <!-- <div class="product-characteristic">
+              <p>Este café posee un gran aroma, sabor, cuerpo y acidez</p>
+            </div> -->
+          </div>
+        </div>
+
+
+        <div class="product-complete">
+
+          <div class="product-img2">
+            <img src="/img/productos/<%=productdetail.image%>" class="img-product2" />
+          </div>
+
+          <div class="product-description-complete">
+
+            <div class="product-name-product2">
+              <p><%=productdetail.name%></p>
+            </div>
+
+            <div class="product-price-truck2">
+
+              <div class="product-price-us2">
+                <p>Precio US$ <%=productdetail.price%></p>
+              </div>
+
+              <div class="product-cant2">
+                <i class="fas fa-minus-circle"></i>
+                <div class="product-cantv">
+                  <p class="product-cant-valor2">6</p>
+                </div>
+                <i class="fas fa-plus-circle"></i>
+              </div>
+
+              <div class="product-option-shipping2">
+                <div class="product-truck2">
+                  <i class="fas fa-truck"></i>
+                </div>
+                <div class="product-shipping2">
+                  <p><a href="#">plazos de envío</a></p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="product-product2">
+                <!-- <div class="product-characteristic2">
+                  <p>Este café posee un gran aroma, sabor, cuerpo y acidez</p>
+                </div> -->
+              </div>
+
+              <div class="product-description3">
+                <h4>Descripción</h4>
+                <p>
+                  <%=productdetail.description%>
+                </p>
+              </div>
+          </div>
+        </div>
+
+
+        <div class="product-detail-specs2">
+
+          <div class="product-detail-weight2">
+            <i class="fas fa-balance-scale-left"></i>
+            <p class="product-detail-text-weight2"><%=productdetail.grams%>grms</p>
+          </div>
+
+          <div class="product-detail-texture2">
+            <i class="fas fa-mug-hot"></i>
+            <p class="product-detail-text-textura2"><%=productdetail.category%></p>
+          </div>
+
+          <div class="product-detail-recommended2">
+            <div class="product-detail-calification2">
+              <p class="product-detail-text-calification2">Calificacion</p>
+            </div>
+
+            <div class="poduct-detail-starts2">
+              <%if (productdetail.rating==1){%>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <%}else if (productdetail.rating==2){%>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <%}else if (productdetail.rating==3){%>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <%}else if (productdetail.rating==4){%>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <%}else if (productdetail.rating==5){%>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <%}%>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="product-buttons-payment">
+          <div class="product-payment">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-paypal"></i>
+            <i class="fas fa-certificate"></i>
+          </div>
+        </div>
+
+        <div class="product-featured-global">
+          <div class="product-title-global">
+            <h3 class="product-title">Destacados</h3>
+          </div>
+
+          <div class="product-featured">
+            <div class="product-coffe">
+              <a href="/product/detail/5"><img src="/img/productos/default-product-image.png" class="product-product-img" /></a>
+            </div>
+
+            <div class="product-coffe">
+              <a href="/product/detail/4"><img src="/img/productos/default-product-image.png" class="product-product-img" /></a>
+            </div>
+
+            <div class="product-coffe">
+              <a href="/product/detail/3"><img src="/img/productos/default-product-image.png" class="product-product-img" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Pie de Pagina -->
+
+    <%- include("../partials/footerNico") %>
+
+
+  </body>
+
+  </html>

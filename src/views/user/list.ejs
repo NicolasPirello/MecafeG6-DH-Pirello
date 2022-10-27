@@ -1,0 +1,63 @@
+<!-- Encabezado de la pagina -->
+<%- include("../partials/head") %>
+    <title>Administracion de Usuarios</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">  
+        <div class="container_users">
+            <%- include("../partials/menuAdmin") %>
+
+            <div class="container_detail_list-users"> 
+                <div class="list_user_title">
+                    <p class="list_title_user">Listado de Usuarios</p>      
+                </div>         
+            </div>
+
+            <div class="container_table_adminUsersList">
+                <div class="container_table_adminUsers">
+                    <table class="AdminUsers__table">
+                        <thead>
+                            <tr>
+                                <th class="list_user_hidden">Id</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th class="list_user_hidden">Rol</th>
+                                <th class="list_user_hidden">Teléfono</th>                              
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% allUsers.forEach (element => { %>
+
+                                <tr>
+                                    <td class="list_user_hidden">#<%= element.id %></td>
+                                    <td><%= element.firstName %></td>
+                                    <td><%= element.lastName %></td>
+                                    <td><%= element.email %></td>
+                                    <td class="list_user_hidden"><%= element.roles.name %></td>
+                                    <td class="list_user_hidden"><%= element.phone %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+
+                    </table>
+                
+                </div>
+            </div>
+        </div> 
+       
+    </section>
+    <!-- Pie de Pagina -->
+    <%- include("../partials/footerNico") %>
+</body>
+</html>
+
+<script src="../../../../../../../../js/menuPartial.js"></script>
+
+   

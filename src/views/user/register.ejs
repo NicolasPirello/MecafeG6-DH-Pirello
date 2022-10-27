@@ -1,0 +1,170 @@
+<!-- Encabezado de la pagina -->
+<%- include("../partials/head") %>
+    
+    <title>Formulario de Registro</title>
+</head>
+<body class="bodyHome"> 
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">
+
+        <div>
+
+            <div class="registerContainerGeneral">
+        
+                <div class="registerForm__container-form">
+
+                    <form action="/user/register" id ="registerForm__form" class="registerForm__form-register" method="POST" enctype="multipart/form-data">
+
+                        <div class="registerForm__titleForm">
+                            <h2>¿Todavia no tenes una cuenta?</h2>
+                            <h3>Registrate Ahora 😀</h3>
+                        </div>
+
+                        <div>
+                            <input type="text" name="name" class="registerForm__formInput_register"
+                            value="<%= locals.oldData ? oldData.name : null %>" id="name_register" placeholder=" ">
+                            <label for="name_register" class="registerForm__formLabel_register">Ingresa tu Nombre:</label>
+                            <i class="registerForm_errorItem_name fas fa-times-circle"></i>
+
+                        
+                            <!-- validaciones Front -->
+                            <section class="register_formErrorFrontGeneral" id="menssageErrorGeneral_name"> 
+                                <p class="register_formErrorFront" id="menssageErrorGeneral"> El nombre debe ser mayor a 3 digitos, no puede contener números, ni caracteres especiales</p>
+                            </section>
+                            <!-- validaciones Back -->
+                            <% if(locals.errorMessage && errorMessage.name){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.name.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="text" name="lastName" class="registerForm__formInput_register" 
+                            value="<%= locals.oldData ? oldData.lastName : null %>" id="lastName" placeholder=" ">
+                            <label for="lastName" class="registerForm__formLabel_register">Ingresa tu Apellido:</label>
+                            <i class="registerForm_errorItem_lastName fas fa-times-circle"></i>
+
+                            <!-- validaciones Front -->
+                            <section class="register_formErrorFrontGeneral" id="menssageErrorGeneral_lastName"> 
+                                <p class="register_formErrorFront" id="menssageErrorGeneral"> El apellido debe ser mayor a 4 digitos, no puede contener números, ni caracteres especiales</p>
+                            </section>
+
+                            <!-- validaciones Back -->
+                            <% if(locals.errorMessage && errorMessage.lastName){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.lastName.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="text" name="email" class="registerForm__formInput_register"
+                            value="<%= locals.oldData ? oldData.email : null %>" id="email"  placeholder=" ">
+                            <label for="email" class="registerForm__formLabel_register">Ingresa tu Correo Electrónico</label>
+                            <i class="registerForm_errorItem_email fas fa-times-circle"></i>
+
+                            <!-- validaciones Front -->
+                            <section class="register_formErrorFrontGeneral" id="menssageErrorGeneral_email"> 
+                                <p class="register_formErrorFront" id="menssageErrorGeneral"> El correo solo puede contener letras, números, @, punto, guión y guión bajo</p>
+                            </section>
+                            
+
+                            <!-- validaciones Back -->
+                            <% if(locals.errorMessage && errorMessage.email){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.email.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="text" name="phone" class="registerForm__formInput_register"
+                            value="<%= locals.oldData ? oldData.phone : null %>" id="phone"  placeholder=" ">
+                            <label for="phone" class="registerForm__formLabel_register">Ingresa tu número de teléfono</label>
+                            <i class="registerForm_errorItem_phone fas fa-times-circle"></i>
+
+                            <!-- validaciones Front -->
+                            <section class="register_formErrorFrontGeneral" id="menssageErrorGeneral_phone"> 
+                                <p class="register_formErrorFront" id="menssageErrorGeneral">El teléfono solo puede contener números y debe ser minimo de 7 digitos</p>
+                            </section>
+
+                            <!-- validaciones Back -->
+                            <% if(locals.errorMessage && errorMessage.phone){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.phone.msg %>
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="password" name="password" class="registerForm__formInput_register" id="password" placeholder=" ">
+                            <label for="password" class="registerForm__formLabel_register">Ingresa tu Contraseña</label>
+                            <i class="registerForm_errorItem_password fas fa-times-circle"></i>
+
+                            <!-- validaciones Front -->
+                            <section class="register_formErrorFrontGeneral" id="menssageErrorGeneral_password"> 
+                                <p class="register_formErrorFront" id="menssageErrorGeneral">La contraseña debe ser mayor igual a 8 caracteres, puede utilizar letras, nùmeros y caracteres especiales</p>
+                            </section>
+
+                            <!-- validaciones Back -->
+                            <% if(locals.errorMessage && errorMessage.password){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.password.msg %> 
+                                </p>
+                            <% } %> 
+                        </div>
+
+                        <div>
+                            <input type="password" name="confirmPassword" class="registerForm__formInput_register" id="confirmPassword" placeholder=" ">
+                            <label for="confirmPassword" class="registerForm__formLabel_register">Confirma tu Contraseña</label>
+                            <i class="registerForm_errorItem_confirmPassword fas fa-times-circle"></i>
+
+                            <!-- validaciones Front -->
+                            <section class="register_formErrorFrontGeneral" id="menssageErrorGeneral_confirmPassword"> 
+                                <p class="register_formErrorFront" id="menssageErrorGeneral">Las contraseñas deben coincidir</p>
+                            </section>
+
+                            <!-- validaciones Back -->
+                            <% if(locals.errorMessage && errorMessage.confirmPassword){ %>
+                                <p class="register__formError">
+                                    <%= errorMessage.confirmPassword.msg %> 
+                                </p>
+                            <% } %>
+                        </div>
+
+                        <div>
+                            <input type="file" name="imageProfile" class="registerForm__formInput_register"  id="imageProfile" accept=".JPG,.PNG">
+                            <label for="imageProfile" class="registerForm__formLabel_register">Avatar (JPG, PNG):</label>
+                        </div>
+
+                        <!-- mensaje general por si no ha diligenciado todos los campos -->
+                        <div class="registerForm__menssageError" id="menssageError">
+                            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor diligenciar todos los campos correctamente.</p>
+                        </div>
+
+                        <div class="registerForm__Btns">
+                            <button type="submit" class="registerForm__btn btnSendRegister" >Registrarme</button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Pie de Pagina -->
+    <%- include("../partials/footerNico") %>
+
+    <script src="../../../../../../../../js/validationUser.js"></script>
+    
+</body>
+</html>

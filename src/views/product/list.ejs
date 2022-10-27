@@ -1,0 +1,151 @@
+<!-- Head de la pagina -->
+<%- include("../partials/head") %>
+
+<title>Listado de Productos</title>
+</head>
+
+<body class="bodyHome">
+    
+    <!-- Cabecera. -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">
+        
+        <div class="listProductContainerGeneral">
+
+            <section class="listProduct">
+
+                <div class="listProduct__containerFilter">
+
+                    <form action="" method="get">
+
+                        <div class="listProduct__titleFilter">
+                            <a href="/product"><i class="fas fa-times-circle"></i></a>
+                            <p >Filtro</p>
+                            <i id="aparecerFiltro" class="fa-solid fa-angle-down"></i>
+                        </div>
+
+                        <div class="listProduct__filtersChecks listProduct__filtersHidden">
+
+                            <div class="filtersChecks-BoxGeneral">
+                                <div>
+                                    <p>Peso:</p>
+                                </div>
+
+                                <div class="filtersChecks_boxFilter">
+                                    <label for="250grames" class="createProduct__labelCategory">
+                                        <input type="checkbox" id="250grames" name="grames" value="250" >
+                                        250 Gramos
+                                    </label>
+                                    
+                                    <label for="500grames" class="createProduct__labelCategory">
+                                        <input type="checkbox" id="500grames" name="grames" value="500" >
+                                        500 Gramos
+                                    </label>
+                                    <label for="1000grames" class="createProduct__labelCategory">
+                                        <input type="checkbox" id="1000grames" name="grames" value="1000" >
+                                        1000 Gramos
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="filtersChecks-BoxGeneral">
+
+                                <div>
+                                    <p>Molienda:</p>
+                                </div>
+
+                                <div  class="filtersChecks_boxFilter">
+                                    <% typeGrindings.forEach( element => { %>
+                                    
+                                        <label for="<%= element.id %>" class="createProduct__labelCategory">
+                            
+                                            <input type="checkbox" id="<%= element.id %>" name="idCategories" value="<%= element.id %>">
+                            
+                                        <%= element.name %></label>
+                            
+                                    <% }); %>  
+                                    
+                                </div>
+                            </div>
+
+                            <button type="submit">Filtrar</button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="listProduct__containerProducts">
+                    
+                    <div class="listProduct__containerProducts-titleProducts">
+                        <p>Listado de Productos</p>
+                    </div>
+
+                    <div class="listProduct__boxProducts">
+
+                        <% products.forEach (element => { %>
+
+                        <a href="/product/detail/<%= element.id %>">
+
+                            <div class="boxProducts-itemProduct">
+
+                                    <div class="boxProducts__imageProduct">
+                                        <% if(element.images_products.length > 0) { %>
+                                            <img src="/img/productos/<%= element.images_products[0].path %>" alt="">
+                                        <% } %>
+                                    </div>
+
+                                <div class="listProduct__titleProduct">
+                                    <p> <%= element.name %> </p>
+                                </div>
+
+                                <div class="listProduct__detailsProducts">
+                                    <div>
+                                        <p class="listProduct__price">Precio Desde: 
+                                            <% // hace un array de precios (omite los precios 0)
+                                                let prices = element.products_grames.map((productGrame) => {
+                                                    return productGrame.price > 0 ? productGrame.price : false;
+                                                }).filter((price) => { return price}) 
+                                            %>
+                                            
+                                            <%= parseFloat(Math.min.apply(null, prices)).toFixed(2); %>
+                                                <!-- si quieres el hasta: (puede que solo haya un precio para el producto - en ese caso prices.length == 1) -->
+                                            <% parseFloat(Math.max.apply(null, prices)).toFixed(2); %>
+                                    
+                                            
+                                            USD</p>
+                                        <p>Envio gratis</p>
+                                    </div>
+
+                                    <i class="fa-solid fa-cart-flatbed"></i>
+                                </div>
+
+                                <div class="listProduct__masInfo">
+                                    <p> Descripcion del Producto </p>
+                                </div>
+
+                            </div>
+                        </a>
+
+                        <% }); %>
+
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+
+    </section>
+
+    <!-- Pie de Pagina -->
+    <%- include("../partials/footerNico") %>
+    <script src="../../../../../../../../js/productList.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!-- Encabezado de la pagina -->
+<%- include("../partials/head") %>
+    <title>Tipos De Molienda</title>
+</head>
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("../partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">  
+        <div class="container_users">
+            <%- include("../partials/menuAdmin") %>
+            <div class="container_detail_view_admin"> 
+                <p class="title">Tipos De Molienda</p>               
+            </div>
+
+            <div class="container_table_list_typeGrinding">
+                <table class="typeGrinding__table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>                             
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% allTypeGrinding.forEach (element => { %>
+
+                            <tr>
+                                <td><%= element.id %></td>
+                                <td><%= element.name %></td>
+                                <td>
+                                    <div class="AdminProducts__btn">
+                                        <form action="/type-grinding/edit/<%= element.id %>" method="get"> 
+                                            <button type="submit" class="AdminTypeGrinding__btn"><i class="fas fa-edit AdminTypeGrinding__btnModify"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+
+                </table>
+                
+            </div>
+        </div> 
+       
+    </section>
+    <!-- Pie de Pagina -->
+    <%- include("../partials/footerNico") %>
+</body>
+</html>
+
+<script src="../../../../../../../../js/menuPartial.js"></script>

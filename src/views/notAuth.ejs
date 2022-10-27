@@ -1,0 +1,33 @@
+<!-- Encabezado de la pagina -->
+
+<%- include("./partials/head") %>
+
+<title>Home</title>
+</head>
+
+<body class="bodyHome">
+
+    <!-- Cabecera -->
+    <%- include("./partials/header") %>
+
+    <!-- Contenido -->
+    <section class="generalHome">
+    
+       <div class="notAuth">
+
+        <div class="notAuth__container">
+            <img src="/img/LogosyDemas/Permisos Administrador Cono v2.png" alt="">
+            <h1>Pagina no encontrada</h1>
+            <p>La URL solicitada necesita permisos de Administrador.</p>
+            <a onclick="openModal('modalLogin')"><button>Inicia Sesion Ahora!</button></a>
+         </div>
+
+       </div>
+
+    </section>
+
+    <!-- Pie de Pagina -->
+    <%- include("./partials/footerNico") %>
+
+</body>
+</html>
