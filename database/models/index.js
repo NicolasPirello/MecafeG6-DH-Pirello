@@ -26,7 +26,7 @@ if (config.use_env_variable) {
 
 */
 
-const sequelize = new Sequelize(process.env.URI)
+const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL)
 
 fs
   .readdirSync(__dirname)
