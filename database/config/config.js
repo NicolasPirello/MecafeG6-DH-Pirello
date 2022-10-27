@@ -12,15 +12,4 @@ module.exports = {
   }
 }
 
-module.exports = {
-  "development": {
-    "username": "bec26f19e88d03",
-    "password": "1d414f5a",
-    "database": "heroku_93891870e8f4f0a",
-    "host": "us-cdbr-east-06.cleardb.net",
-    "dialect": "mysql"//,
-    //"operatorsAliases": false
-  }
-}
-
 */
