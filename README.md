@@ -45,7 +45,7 @@ Se creo un diseño **TOTALMENTE RESPONSIVE**, la programación se enfocó en ser
  - 768 px
  - 992 px
  - 1200 px
- - 
+ 
 #### Elección de Colores
 Se selecciono los colores estudiando paletas e investigando la actualidad. Desde la realización de los Logos, los Botones y los **propios diseños de los paquetes de café (Creados por Nicolas Alejandro Pirello)**
 
@@ -53,7 +53,7 @@ Se selecciono los colores estudiando paletas e investigando la actualidad. Desde
 
 En lo largo de la cursada no se enseñó a generar un deploy completo con base de datos, solo se vio un deploy básico de una página estática, las habilidades mencionadas fueron aprendidas de forma individual, motivo por el cual se creó este clon del proyecto original.
 
-Al proyecto en principio se le hizo un deploy en He Roku, debido a que pasara a ser un servicio pago se generó la oportunidad de aprender sobre otros servicios, tanto de páginas estáticas como de páginas con base de datos y consumo de APIS.
+Al proyecto en principio se le hizo un deploy en Heroku, debido a que pasara a ser un servicio pago se generó la oportunidad de aprender sobre otros servicios, tanto de páginas estáticas como de páginas con base de datos y consumo de APIS.
 
 ### Habilidades de Deploy adquiridas.
 
