@@ -26,6 +26,28 @@ El material mencionado no solo es material servido en el curso, también se agre
  - Dotenv
  - EJS
  - Body-parser
+ 
+## Informacion del Proyecto
+
+El proyecto es una Tienda de Café, donde se venden productos de la marca MECAFE (Ficticia), cuenta con un login y un register y dos tipos de cuentas, **ADMIN** y **CLIENT**
+
+Cuenta Cliente: Este perfil es capaz de agregar productos al carrito, cargar y modificar datos personales, direcciones, cambiar la predeterminada, cambiar su foto de perfil y navegar por todas las rutas no protegidas para el usuario admin (a las cuales aunque se intente ingresar serán redirigidos a la Home)
+
+Cuenta Admin: Este perfil es capaz de editar productos, crearlos, borrarlos y navegar por todas las rutas protegidas. Ademas de tener todos los permisos del perfil cliente.
+
+#### Diseño.
+Se creo un diseño **TOTALMENTE RESPONSIVE**, la programación se enfocó en ser **Mobile First** ya que la mayor cantidad de tráfico en un entorno real pasa por nuestros celulares o tablets. Se estructuro la mayoría del proyecto con **GRID**, utilizando **GRID TEMPLATE AREAS**. También se utilizó **FLEXBOX** para la organización interna dentro de las áreas de grid
+
+**Querys Desarrolladas:**
+
+ - 361 px
+ - 480 px
+ - 768 px
+ - 992 px
+ - 1200 px
+ - 
+#### Elección de Colores
+Se selecciono los colores estudiando paletas e investigando la actualidad. Desde la realización de los Logos, los Botones y los **propios diseños de los paquetes de café (Creados por Nicolas Alejandro Pirello)**
 
 ## Deploy
 
@@ -47,4 +69,9 @@ Al proyecto en principio se le hizo un deploy en He Roku, debido a que pasara a 
 #### GitHub Pages
 - REACT con consumo de API del Proyecto Integrador.
 
-**Deploy del Proyecto Integrador:** [Link](https://github.com/NicolasPirello/MecafeG6-DH-Pirello)
+**Deploy del Proyecto Integrador:** [Link](https://mecafeg6-dh-pirello-production.up.railway.app/)
+
+## Proyecto de REACT (Dashboard)
+
+Este proyecto es parte de Digital House pero se hizo en un repositorio aparte, dejo más información junto con su deploy [en este link](https://github.com/NicolasPirello/MecafeREACT-DH-Pirello)
+ 
