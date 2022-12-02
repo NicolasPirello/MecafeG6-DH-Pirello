@@ -5,7 +5,6 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
 /* ESTO CONECTA LA BASE DE DATOS */
@@ -13,8 +12,12 @@ const db = {};
 // lEEMOS VARIABLES GLOBALES.
 require("dotenv").config()
 
-//CONECTAMOS CON EL OBJETO QUE TENEMOS EN DATABASE, CONFIG.
+
+const config = require(__dirname + '/../config/config.js')[env];
+
 let sequelize;
+//CONECTAMOS CON EL OBJETO QUE TENEMOS EN DATABASE, CONFIG.
+
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
@@ -22,7 +25,6 @@ if (config.use_env_variable) {
 }
 
 /* FIN DE ESTO CONECTA LA BASE DE DATOS */
-
 
 
 /* CONECTANDO CON EL SERVICIO DE RAYWAL.APP, SOLO CON LA URL */

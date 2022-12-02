@@ -54,8 +54,6 @@ app.use(globalMiddleware.error404);
 
 // Esto nos permite leer si hay algun puerto de algun servicio o en su caso contrario ejecutarlo en el Local 3030
 
-
-
 app.listen( process.env.PORT || 3030, () => {
     console.log("Servidor escuchando en puerto: ", process.env.PORT || 3030) //3030
 })
