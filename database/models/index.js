@@ -2,31 +2,31 @@
 
 const fs = require('fs');
 const path = require('path');
-const { Sequelize } = require('sequelize');
+const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const db = {};
-require("dotenv").config() // Necesario para leer variables de Entorno, acordarse de instalarlo.
-
-/* 
-
-* Cosas que cambie para el DEPLOY
-
 const config = require(__dirname + '/../config/config.js')[env];
+const db = {};
 
-const Sequelize = require('sequelize');
+/* ESTO CONECTA LA BASE DE DATOS */
 
+// lEEMOS VARIABLES GLOBALES.
+require("dotenv").config()
+
+//CONECTAMOS CON EL OBJETO QUE TENEMOS EN DATABASE, CONFIG.
 let sequelize;
-
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
-} 
+}
 
-*/
+/* FIN DE ESTO CONECTA LA BASE DE DATOS */
 
-const sequelize = new Sequelize(process.env.MYSQL_URL)
+
+
+/* CONECTANDO CON EL SERVICIO DE RAYWAL.APP, SOLO CON LA URL */
+// const sequelize = new Sequelize(process.env.MYSQL_URL)
 
 fs
   .readdirSync(__dirname)

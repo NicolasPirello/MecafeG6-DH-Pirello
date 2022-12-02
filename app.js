@@ -7,6 +7,8 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const authMiddlewares = require('./src/middlewares/authMiddlewares');
 const cors = require("cors")
+// IMPORTANTISIMA LINEA, NO OLVIDAR
+require("dotenv").config()
 
 
 app.use(express.static(path.join(__dirname, './public')));
@@ -51,7 +53,10 @@ app.use(globalMiddleware.error404);
 // app.listen(3030,() => console.log("Servidor escuchando en puerto 3030"));
 
 // Esto nos permite leer si hay algun puerto de algun servicio o en su caso contrario ejecutarlo en el Local 3030
+/*
 app.listen( process.env.PORT || 3030, () => {
-    console.log("Servidor escuchando en puerto: ", process.env.PORT || 3030)
+    console.log("Servidor escuchando en puerto: ", process.env.PORT || 3030) //3030
 })
+*/
 
+app.listen(3030,() => console.log("Servidor escuchando en puerto 3030"));
