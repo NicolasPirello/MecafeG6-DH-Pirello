@@ -16,6 +16,7 @@ require("dotenv").config()
 const config = require(__dirname + '/../config/config.js')[env];
 
 let sequelize;
+
 //CONECTAMOS CON EL OBJETO QUE TENEMOS EN DATABASE, CONFIG.
 
 if (config.use_env_variable) {
