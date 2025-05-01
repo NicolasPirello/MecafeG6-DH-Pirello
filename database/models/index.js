@@ -7,17 +7,20 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const db = {};
 
-/* ESTO CONECTA LA BASE DE DATOS */
-
-// lEEMOS VARIABLES GLOBALES.
-require("dotenv").config()
-
+// Leemos variables globales
+require("dotenv").config();
 
 const config = require(__dirname + '/../config/config.js')[env];
 
-let sequelize;
+// 👉 Agregamos estas opciones si no estaban
+config.dialectOptions = {
+  typeCast: true,
+  multipleStatements: true
+};
 
-//CONECTAMOS CON EL OBJETO QUE TENEMOS EN DATABASE, CONFIG.
+config.logging = false;
+
+let sequelize;
 
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -25,11 +28,15 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-/* FIN DE ESTO CONECTA LA BASE DE DATOS */
-
-
-/* CONECTANDO CON EL SERVICIO DE RAYWAL.APP, SOLO CON LA URL */
-// const sequelize = new Sequelize(process.env.MYSQL_URL)
+// 💡 Desactivar ONLY_FULL_GROUP_BY para evitar el error de agrupamiento
+sequelize.authenticate()
+  .then(async () => {
+    console.log('✅ Conectado a MySQL exitosamente');
+    await sequelize.query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
+  })
+  .catch(err => {
+    console.error('❌ Error al conectar a la base de datos:', err);
+  });
 
 fs
   .readdirSync(__dirname)
