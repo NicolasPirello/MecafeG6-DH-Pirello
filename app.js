@@ -18,6 +18,7 @@ app.use(methodOverride('_method'));
 app.use(morgan('tiny')); /* Lo unico que se necesita para monitorear con Morgan */
 app.use(session( {secret: 'navegando por meCafe', resave: false, saveUninitialized: false }));
 app.use(cookieParser());
+app.use(cors())
 /** 
  * middleware que inserta en local user (para obtener obtener esos valores en cualquier vista)
  * También se utiliza para pasar valores de errores a login (mas adelante mover a otro middleware)
@@ -46,7 +47,6 @@ app.use('/user',userRoutes);
 app.use('/sale',saleRoutes);
 app.use('/user',directionRoutes);
 app.use('/type-grinding',typeGrindingRoutes); // Corri esto para arriba del error404 porque sino no funcaba.
-app.use(cors())
 app.use('/api',apisRoutes);
 app.use(globalMiddleware.error404);
 

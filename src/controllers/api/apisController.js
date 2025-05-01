@@ -48,20 +48,27 @@ let apisController = {
                 return res.status(200).json(result);
             })
     },
-    totalProductsTypeGrinding:(req, res) => {
-        db.TypeGrinding.findAll({  
+    totalProductsTypeGrinding: (req, res) => {
+        db.TypeGrinding.findAll({
+            attributes: [
+                'id',
+                'name',
+                [sequelize.fn('COUNT', sequelize.col('products.id')), 'totalProducts']
+            ],
             include: [
                 {
-                  model: db.Product,
-                  as: "products",
-                  through: {where:{active:true},attributes:[]},
-                  attributes: [[sequelize.fn('count', sequelize.col('*')), 'totalProducts']],
-                },],
-                group:['id']
+                    model: db.Product,
+                    as: "products",
+                    through: { where: { active: true }, attributes: [] },
+                    attributes: [], // 👈 importantísimo: evitamos traer columnas de Product
+                },
+            ],
+            group: ['TypeGrinding.id', 'TypeGrinding.name'],
         }).then(result => {
             return res.status(200).json(result);
-        })
-    },
+        });
+    }
+    ,
     lastProductCreated:(req, res) => {
         db.Product.findOne({
             where: {active: true},
